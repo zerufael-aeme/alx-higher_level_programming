@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""Merges data from two tables and list cities that are 
-   from the state passed in as an argument"""
+"""A script that takes in the name of
+a state as an argument and list * cities"""
 
 if __name__ == '__main__':
 
@@ -13,8 +13,10 @@ if __name__ == '__main__':
     cur = db.cursor()
     cur.execute("SELECT cities.name\
                 FROM cities LEFT JOIN states\
-                ON cities.state_id=states.id\
+                ON states.id = cities.state_id\
                 WHERE states.name = %s\
                 ORDER BY cities.id ASC", (sys.argv[4],))
     rows = cur.fetchall()
     print(", ".join([row[0] for row in rows]))
+    cur.close()
+    db.close()
