@@ -6,14 +6,14 @@ import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 
-if __name__ == '__main__':
-    
+Base = declarative_base()
 
-    Base = declarative_base()
+class State(Base):
+    """Class State"""
 
-    class State(Base):
-        __tablename__ = "states"
+    __tablename__ = "states"
  
-        id = Column(Integer, primary_key=True)
-        name = Column(String(128), nullable=False)
+    id = Column(Integer, primary_key=True, autoincrement=True,
+                 nullable=False, unique=True)
+    name = Column(String(128), nullable=False)
 
